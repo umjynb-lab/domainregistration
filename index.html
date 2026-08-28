@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Domain Name Availability Checks Work</title>
+<meta name="description" content="Learn how a domain availability check determines whether a name can be registered, including the role of registries and registrars in the process.">
+<link rel="canonical" href="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #1e3a5f;
+    --accent: #0ea5e9;
+    --light: #f0f9ff;
+    --dark: #0f172a;
+    --text: #334155;
+    --border: #bae6fd;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(160deg, #0f172a 0%, #1e3a5f 40%, #0ea5e9 100%);
+    min-height: 100vh;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .page-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+  .hero-banner {
+    text-align: center;
+    padding: 50px 30px 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.12) 100%);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 20px;
+    margin-bottom: 36px;
+    backdrop-filter: blur(10px);
+  }
+  .hero-banner h1 {
+    font-size: 2.8em;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 12px rgba(0,0,0,.3);
+  }
+  .hero-banner .subtitle {
+    font-size: 1.1em;
+    color: #bae6fd;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .content-card {
+    background: rgba(255,255,255,.97);
+    border-radius: 18px;
+    padding: 48px 52px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    margin-bottom: 28px;
+  }
+  .content-card p {
+    font-size: 1.06em;
+    color: var(--text);
+    margin-bottom: 18px;
+    text-align: justify;
+  }
+  .content-card p:first-child { margin-top: 0; }
+  .content-card a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1px;
+    transition: color .25s, border-color .25s;
+  }
+  .content-card a:hover { color: var(--accent); border-color: var(--primary); }
+  .section-block {
+    margin-top: 38px;
+  }
+  .section-block h2 {
+    font-size: 1.85em;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--accent);
+  }
+  .section-block p {
+    font-size: 1.05em;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-align: justify;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  .info-box {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .info-box h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+  .info-box p {
+    font-size: .97em;
+    color: #475569;
+    line-height: 1.7;
+  }
+  .highlight-box {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-left: 5px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 26px;
+    margin: 28px 0;
+  }
+  .highlight-box p {
+    font-size: 1.02em;
+    color: #1e40af;
+    font-weight: 500;
+    margin: 0;
+  }
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: rgba(255,255,255,.5);
+    font-size: .88em;
+  }
+  @media (max-width: 768px) {
+    .hero-banner h1 { font-size: 1.9em; }
+    .content-card { padding: 28px 20px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .section-block h2 { font-size: 1.5em; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+  <div class="hero-banner">
+    <h1>How Domain Name Availability Checks Work</h1>
+    <p class="subtitle">A beginner-friendly explanation of how the domain registration system determines whether a name is available to register.</p>
+  </div>
+
+  <div class="content-card">
+    <p>People choosing a website address often begin with a <a href="https://domain-checker.co.uk">domain name checker</a> to see whether a preferred name is available. The moment someone types a potential domain name into a search field and clicks check, a series of queries travels through the internet's naming infrastructure to determine whether that specific combination of name and extension has already been claimed. The result appears quickly, but it reflects a multi-layered system of registries, registrars, and protocols that together manage how internet addresses are assigned and tracked globally.</p>
+    <p>Understanding how this process works helps clarify what the availability result actually means, what limitations apply to the check, and why the result should be understood as a real-time snapshot rather than a permanent guarantee. Domain availability is a dynamic state that can change at any moment, and the infrastructure behind the check reflects the distributed nature of the internet's naming system rather than a single central authority making all decisions.</p>
+
+    <div class="section-block">
+      <h2>The Domain Name System and Its Hierarchy</h2>
+      <p>Before exploring availability checks specifically, it helps to understand how the domain name system is structured. Domain names exist within a hierarchical naming system that organises addresses from right to left. The rightmost part of a domain address is the top-level domain, or TLD, such as .com, .org, or .uk. The part immediately before the TLD is the second-level domain, which is the name a registrant actually registers. Everything to the left of the second-level domain consists of subdomains that the registrant can configure themselves.</p>
+      <p>This hierarchy matters for availability checks because each TLD is managed independently. Availability of example.com has no relationship to availability of example.org or example.co.uk. Each extension has its own registry, its own policies, and its own database of registrations. Checking availability therefore requires specifying not just the desired name but also the specific extension, because the combination of name and extension together defines the unique address being queried.</p>
+      <p>The domain name system was designed to be decentralised, which is why different extensions exist under different organisations worldwide. Some are managed by global bodies, others by national organisations, and others by commercial registries. This decentralisation means that rules and restrictions can vary significantly between extensions, affecting what is available, who can register, and what information appears in public records.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>What Is a Registry?</h3>
+        <p>A registry is the organisation that maintains the authoritative database for a specific domain extension. It records which names are registered, holds the official records, and sets the rules for how names under that extension can be obtained and maintained.</p>
+      </div>
+      <div class="info-box">
+        <h3>What Is a Registrar?</h3>
+        <p>A registrar is an accredited company or organisation that provides the public-facing registration service. Registrars communicate with registries on behalf of customers to process registrations, renewals, transfers, and administrative updates.</p>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2>The Role of Registries in Availability Checking</h2>
+      <p>Each domain extension is governed by a registry that maintains the definitive database of all registered names under that extension. When a domain availability check is performed, the query ultimately references whether the relevant registry has a current registration record for the requested name and extension combination. If no record exists in the registry's database, the name is generally considered available for registration, subject to any restrictions that apply to that particular extension.</p>
+      <p>Registries typically do not sell domain names directly to the general public. Their role is to maintain the central authoritative record and define the policies for their extension. These policies can include restrictions on who is eligible to register, naming conventions that submissions must conform to, categories of names that are reserved for official use, and names that are blocked for legal or policy reasons. A name may appear available in a simple check but be ineligible for registration due to these policies, which is why availability results should always be understood within the context of the relevant extension's rules.</p>
+      <p>Different registries use different technical protocols for sharing their data. Some use a protocol called WHOIS, which has been in use since the early days of the internet. Newer registries and extensions may use a more modern protocol called RDAP, which provides structured data more suitable for modern applications. Availability checking tools query these protocols to obtain current registry data when responding to user searches.</p>
+    </div>
+
+    <div class="highlight-box">
+      <p>An available result means no current registration record exists at the registry for that specific name and extension. It reflects the state of the database at the moment of the query, not a guarantee that the name will remain available or that it can definitely be registered.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>How Registrars Provide Availability Tools</h2>
+      <p>Most people interact with domain availability through a registrar's checking tool rather than querying the registry directly. Registrars are accredited organisations that have been approved to submit registrations to registries and to provide domain registration services to the public. The availability tools that registrars offer query registry data and present the results in a user-friendly interface alongside options to register available names.</p>
+      <p>Because all accredited registrars access the same underlying registry data, availability results should be consistent across different registrar tools for the same name and extension at the same moment. If one registrar's tool shows a name as available, other registrar tools should show the same result, because they are all reading from the same authoritative source. However, display differences, caching, and update timing can occasionally create minor discrepancies between tools for brief periods.</p>
+      <p>Registrars may offer checking tools that query multiple extensions simultaneously, allowing users to see availability across several TLDs in a single search. This multi-extension checking is a practical convenience feature built on the same underlying queries to each relevant registry. The availability of example.com will still be determined by querying the .com registry, and example.co.uk will be determined by querying the registry for .co.uk domains, even when the results are displayed side by side in the same interface.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>What Unavailable Actually Means</h2>
+      <p>When an availability check returns an unavailable result, this means a registration record exists in the registry database for that name and extension. However, unavailability does not necessarily indicate active use. Domains are frequently registered by individuals or organisations who are not currently using them as live websites. The registration record exists and the name is claimed, but no content may be associated with it, no website may be running at that address, and the registrant may not have any immediate plans to use it.</p>
+      <p>Domains may be held for various reasons. An individual may have registered a name speculatively in anticipation of future use. A business may hold multiple variations of their primary domain to prevent others from registering similar addresses. A domain investor may have registered names across many extensions as a commercial activity. In all of these cases, the domain is unavailable for registration by others even though it may appear dormant or inactive from a website perspective.</p>
+      <p>Some unavailable results reflect temporary states in the registration lifecycle rather than active ownership. A domain that has recently expired may show as unavailable while it passes through post-expiry grace periods before eventually being released back into the pool of available names. Understanding that unavailability has different causes helps users interpret the result more accurately and decide how to proceed when their preferred name is not immediately available.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>Real-Time Queries and Caching Considerations</h2>
+      <p>Domain availability checks query registry data in real time to provide current results. The status of any domain can change at any moment as registrations are completed, expired domains are dropped, and transfers are processed. A name that shows as available during one check may have been registered by the time a user attempts to complete the registration a few minutes later. This real-time nature of domain availability is one reason why many registration services encourage users to proceed quickly when they find a name they want.</p>
+      <p>Some checking tools use cached data to improve response speed, particularly when querying many extensions simultaneously. Caching means that the displayed result may reflect registry data from a recent query rather than a query made at the exact moment of the check. For most practical purposes the difference is insignificant, but users should be aware that cached results have a small inherent delay compared to live queries to the registry's own systems.</p>
+    </div>
+
+    <div class="section-block">
+      <h2>The Significance of the Check in Domain Research</h2>
+      <p>An availability check is typically the starting point of domain research rather than its conclusion. For individuals choosing a personal website address, the availability result is usually all they need before proceeding. For businesses or organisations conducting more thorough research, the availability result is one data point among several that inform the decision. Understanding who holds existing registrations, how long a name has been registered, what historical use the name may have had, and how the name fits within a broader naming strategy all require additional research beyond a basic availability check.</p>
+      <p>The availability check also sets the context for decisions about alternative names and extensions when a preferred option is unavailable. Knowing that a name is taken does not end the research process for most users. It redirects attention toward alternatives, whether by varying the name itself, exploring different extensions, or combining words differently. The availability check system supports this iterative exploration by providing immediate results that allow users to quickly test multiple options and identify the best available match for their needs.</p>
+    </div>
+  </div>
+  <footer><p>&copy; 2026. All rights reserved.</p></footer>
+</div>
+<script>document.querySelector('link[rel="canonical"]').setAttribute('href',window.location.href)</script>
+</body>
+</html>
